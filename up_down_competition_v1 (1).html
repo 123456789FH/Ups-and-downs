@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مسابقة الصعود والهبوط — مشاهدة الحلول حسب المستوى</title>
+  <meta name="description" content="واجهة أنيقة لعرض حلول مسابقة الصعود والهبوط حسب المستويات مع فيديوهات Google Drive مدمجة.">
+  <meta name="theme-color" content="#059669">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { box-sizing: border-box; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    .hero-illus{ animation: float 3s ease-in-out infinite; }
+    .level-card{ transition: transform .3s ease, box-shadow .3s ease; }
+    .level-card:hover{ transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,.2); }
+    .video-container{ position:relative; width:100%; padding-bottom:56.25%; background:#000; border-radius:12px; overflow:hidden; }
+    .video-container iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+    .dropdown-content{ max-height:0; overflow:hidden; transition:max-height .35s ease; }
+    .rotate-180{ transform: rotate(180deg); }
+    .badge-grad{
+      background-image: linear-gradient(135deg, #34d399, #22c55e);
+      color:#fff;
+      box-shadow: 0 8px 24px rgba(34,197,94,.30), inset 0 1px 0 rgba(255,255,255,.35);
+    }
+    @media (prefers-reduced-motion: reduce){
+      .hero-illus{ animation:none !important; }
+      .level-card, .dropdown-content{ transition: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-emerald-50 via-sky-100 to-cyan-100 min-h-screen">
+  <div class="container mx-auto px-4 py-8">
+    <!-- Header -->
+    <header class="text-center mb-10">
+      <!-- Up/Down Arrows SVG -->
+      <svg class="hero-illus w-44 h-44 mx-auto mb-4 drop-shadow" viewBox="0 0 220 220" role="img" aria-label="أيقونة صعود وهبوط">
+        <defs>
+          <linearGradient id="up" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#10b981"/>
+            <stop offset="100%" stop-color="#059669"/>
+          </linearGradient>
+          <linearGradient id="down" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#fb7185"/>
+            <stop offset="100%" stop-color="#be123c"/>
+          </linearGradient>
+        </defs>
+        <!-- Up arrow -->
+        <path d="M60 150 L60 90 L45 90 L80 50 L115 90 L100 90 L100 150 Z" fill="url(#up)" />
+        <!-- Down arrow -->
+        <path d="M140 70 L140 130 L155 130 L120 170 L85 130 L100 130 L100 70 Z" fill="url(#down)" opacity=".9"/>
+        <!-- base line -->
+        <rect x="40" y="170" width="140" height="4" rx="2" fill="rgba(2,132,199,.35)"/>
+      </svg>
+      <h1 class="text-5xl font-bold text-emerald-900 mb-2">مسابقة الصعود والهبوط</h1>
+      <p class="text-xl text-emerald-700">اختر المستوى لمشاهدة الحل</p>
+    </header>
+
+    <!-- Levels -->
+    <div class="max-w-4xl mx-auto space-y-4" id="levels">
+      <!-- Level 1 -->
+      <div class="level-card bg-white rounded-2xl shadow-lg overflow-hidden">
+        <button type="button" class="w-full p-6 flex items-center justify-between hover:bg-emerald-50 transition-colors"
+                aria-expanded="false" aria-controls="level1" data-target="level1" onclick="toggleLevel('level1')">
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center text-3xl font-bold shadow-lg badge-grad">1</div>
+            <div class="text-right">
+              <h2 class="text-2xl font-bold text-emerald-900">المستوى الأول</h2>
+              <p class="text-emerald-700">الانطلاقة</p>
+            </div>
+          </div>
+          <svg id="arrow-level1" class="w-8 h-8 text-emerald-700 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div id="level1" class="dropdown-content px-6 pb-6" role="region" aria-labelledby="arrow-level1">
+          <div class="video-container">
+            <iframe title="حل المستوى الأول (Google Drive)" src="https://drive.google.com/file/d/1xOkk63fuDWQb35pmyDouDTiipDWQUL_R/preview" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="mt-3 text-sm text-emerald-800">
+            <a class="underline hover:no-underline" href="https://drive.google.com/file/d/1xOkk63fuDWQb35pmyDouDTiipDWQUL_R/view?usp=drivesdk" target="_blank" rel="noopener">فتح الفيديو في تبويب جديد</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Level 2 -->
+      <div class="level-card bg-white rounded-2xl shadow-lg overflow-hidden">
+        <button type="button" class="w-full p-6 flex items-center justify-between hover:bg-emerald-50 transition-colors"
+                aria-expanded="false" aria-controls="level2" data-target="level2" onclick="toggleLevel('level2')">
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center text-3xl font-bold shadow-lg badge-grad">2</div>
+            <div class="text-right">
+              <h2 class="text-2xl font-bold text-emerald-900">المستوى الثاني</h2>
+              <p class="text-emerald-700">تحديات ممتعة</p>
+            </div>
+          </div>
+          <svg id="arrow-level2" class="w-8 h-8 text-emerald-700 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div id="level2" class="dropdown-content px-6 pb-6" role="region" aria-labelledby="arrow-level2">
+          <div class="video-container">
+            <iframe title="حل المستوى الثاني (Google Drive)" src="https://drive.google.com/file/d/1VkfMOawQjlrm58y0_ktAd1IkYffmsbDf/preview" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="mt-3 text-sm text-emerald-800">
+            <a class="underline hover:no-underline" href="https://drive.google.com/file/d/1VkfMOawQjlrm58y0_ktAd1IkYffmsbDf/view?usp=drivesdk" target="_blank" rel="noopener">فتح الفيديو في تبويب جديد</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Level 3 -->
+      <div class="level-card bg-white rounded-2xl shadow-lg overflow-hidden">
+        <button type="button" class="w-full p-6 flex items-center justify-between hover:bg-emerald-50 transition-colors"
+                aria-expanded="false" aria-controls="level3" data-target="level3" onclick="toggleLevel('level3')">
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center text-3xl font-bold shadow-lg badge-grad">3</div>
+            <div class="text-right">
+              <h2 class="text-2xl font-bold text-emerald-900">المستوى الثالث</h2>
+              <p class="text-emerald-700">المغامرة تتسع</p>
+            </div>
+          </div>
+          <svg id="arrow-level3" class="w-8 h-8 text-emerald-700 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div id="level3" class="dropdown-content px-6 pb-6" role="region" aria-labelledby="arrow-level3">
+          <div class="video-container">
+            <iframe title="حل المستوى الثالث (Google Drive)" src="https://drive.google.com/file/d/1I1TEffMrZRXmeKWDjuRUjCgM8nXsZD6k/preview" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="mt-3 text-sm text-emerald-800">
+            <a class="underline hover:no-underline" href="https://drive.google.com/file/d/1I1TEffMrZRXmeKWDjuRUjCgM8nXsZD6k/view?usp=drivesdk" target="_blank" rel="noopener">فتح الفيديو في تبويب جديد</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Level 4 -->
+      <div class="level-card bg-white rounded-2xl shadow-lg overflow-hidden">
+        <button type="button" class="w-full p-6 flex items-center justify-between hover:bg-emerald-50 transition-colors"
+                aria-expanded="false" aria-controls="level4" data-target="level4" onclick="toggleLevel('level4')">
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center text-3xl font-bold shadow-lg badge-grad">4</div>
+            <div class="text-right">
+              <h2 class="text-2xl font-bold text-emerald-900">المستوى الرابع</h2>
+              <p class="text-emerald-700">القمة!</p>
+            </div>
+          </div>
+          <svg id="arrow-level4" class="w-8 h-8 text-emerald-700 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div id="level4" class="dropdown-content px-6 pb-6" role="region" aria-labelledby="arrow-level4">
+          <div class="video-container">
+            <iframe title="حل المستوى الرابع (Google Drive)" src="https://drive.google.com/file/d/1ONvNQeTHYQUIqKbeDs9EM0AzpuKqexlR/preview" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="mt-3 text-sm text-emerald-800">
+            <a class="underline hover:no-underline" href="https://drive.google.com/file/d/1ONvNQeTHYQUIqKbeDs9EM0AzpuKqexlR/view?usp=drivesdk" target="_blank" rel="noopener">فتح الفيديو في تبويب جديد</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center mt-12 text-emerald-800">
+      <p class="text-lg">استمتع باللعب وواصل لأعلى المستويات! ⬆️⬇️</p>
+      <p class="mt-2 text-sm font-semibold">شرح : الأستاذ عمر المشايخ</p>
+    </footer>
+  </div>
+
+  <script>
+    function toggleLevel(levelId){
+      const content = document.getElementById(levelId);
+      const arrow = document.getElementById('arrow-' + levelId);
+      const btn = document.querySelector('button[data-target="' + levelId + '"]');
+      const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+      document.querySelectorAll('.dropdown-content').forEach(el => { el.style.maxHeight = null; });
+      document.querySelectorAll('[id^="arrow-"]').forEach(a => { a.classList.remove('rotate-180'); });
+      document.querySelectorAll('button[data-target]').forEach(b => b.setAttribute('aria-expanded','false'));
+
+      if(!isOpen){
+        content.style.maxHeight = content.scrollHeight + 'px';
+        arrow.classList.add('rotate-180');
+        btn.setAttribute('aria-expanded','true');
+      }
+    }
+  </script>
+</body>
+</html>
